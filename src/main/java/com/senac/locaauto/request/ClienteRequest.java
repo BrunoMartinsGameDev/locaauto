@@ -11,5 +11,5 @@ public class ClienteRequest {
     private String email;
     private String telefone;
     private String cpf;
-    private EnderecoRequest endereco;
+    private Integer enderecoId;
 }

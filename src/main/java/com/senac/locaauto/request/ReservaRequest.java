@@ -11,6 +11,6 @@ public class ReservaRequest {
     private Long id;
     private LocalDateTime dataInicio;
     private LocalDateTime dataFim;
-    private VeiculoRequest veiculo;
-    private ClienteRequest cliente;
+    private Integer veiculoId;
+    private Integer clienteId;
 }

@@ -1,6 +1,7 @@
 package com.senac.locaauto.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
@@ -33,10 +34,15 @@ public class EnderecoController {
         if(request.getId() != null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        if(request.getRua() == null || request.getBairro() == null
+         || request.getCidade() == null || request.getEstado() == null
+         || request.getCep() == null || request.getNumero() == null){
+            return new ResponseEntity<>(HttpStatus.PRECONDITION_FAILED);
+        }
         try{
             EnderecoResponse response = service.save(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -48,7 +54,7 @@ public class EnderecoController {
         try{
             EnderecoResponse response = service.save(request);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -60,7 +66,7 @@ public class EnderecoController {
         try{
             service.delete(request);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -72,7 +78,7 @@ public class EnderecoController {
         try{
             EnderecoResponse response = service.findById(request);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -82,7 +88,7 @@ public class EnderecoController {
         try{
             List<EnderecoResponse> response = service.listAll();
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
