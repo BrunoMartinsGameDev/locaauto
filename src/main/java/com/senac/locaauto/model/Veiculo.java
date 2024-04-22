@@ -19,7 +19,6 @@ public class Veiculo {
     private String modelo;
     private String placa;
     private String ano;
-    private Boolean isAtivo;
 
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reserva> reserva;
