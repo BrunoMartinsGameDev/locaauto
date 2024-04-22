@@ -17,7 +17,7 @@ public class Veiculo {
     private Long id;
 
     private String modelo;
-    private String placa;
+    private String placa; // Unique
     private String ano;
 
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -3,6 +3,7 @@ package com.senac.locaauto.mapper;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.senac.locaauto.model.Cliente;
 import com.senac.locaauto.model.Reserva;
@@ -13,7 +14,7 @@ import com.senac.locaauto.request.ReservaRequest;
 import com.senac.locaauto.response.ReservaResponse;
 
 import jakarta.persistence.EntityNotFoundException;
-
+@Component
 public class ReservaMapper {
     @Autowired
     VeiculoRepository veiculoRepository;

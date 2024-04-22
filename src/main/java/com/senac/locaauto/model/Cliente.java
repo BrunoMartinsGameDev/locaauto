@@ -17,9 +17,9 @@ public class Cliente {
     private Long id;
 
     private String nome;
-    private String email;
+    private String email; //Unique
     private String telefone;
-    private String cpf;
+    private String cpf; // Unique
 
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Endereco endereco;

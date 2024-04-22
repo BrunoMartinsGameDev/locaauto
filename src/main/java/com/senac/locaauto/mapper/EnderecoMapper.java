@@ -1,9 +1,11 @@
 package com.senac.locaauto.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.senac.locaauto.model.Endereco;
 import com.senac.locaauto.request.EnderecoRequest;
 import com.senac.locaauto.response.EnderecoResponse;
-
+@Component
 public class EnderecoMapper {
 
     public Endereco getEntityFromRequest(EnderecoRequest request) {

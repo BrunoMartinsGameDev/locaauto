@@ -1,9 +1,11 @@
 package com.senac.locaauto.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.senac.locaauto.model.Veiculo;
 import com.senac.locaauto.request.VeiculoRequest;
 import com.senac.locaauto.response.VeiculoResponse;
-
+@Component
 public class VeiculoMapper {
 
     public Veiculo getEntityFromRequest(VeiculoRequest request) {

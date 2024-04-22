@@ -3,6 +3,7 @@ package com.senac.locaauto.mapper;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.senac.locaauto.model.Cliente;
 import com.senac.locaauto.model.Endereco;
@@ -11,7 +12,7 @@ import com.senac.locaauto.request.ClienteRequest;
 import com.senac.locaauto.response.ClienteResponse;
 
 import jakarta.persistence.EntityNotFoundException;
-
+@Component
 public class ClienteMapper {
     @Autowired
     EnderecoRepository enderecoRepository;

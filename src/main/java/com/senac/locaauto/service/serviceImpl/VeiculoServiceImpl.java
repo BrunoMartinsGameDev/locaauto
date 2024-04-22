@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,13 @@ public class VeiculoServiceImpl implements VeiculoService{
     public VeiculoResponse save(VeiculoRequest request) {
         if(request.getId() == null){
             Veiculo entity = mapper.getEntityFromRequest(request);
-            return mapper.getResponseFromEntity(repository.save(entity));
+            Veiculo entityConstraint = repository.findByPlaca(entity.getPlaca());
+            if(entityConstraint == null){
+                return mapper.getResponseFromEntity(repository.save(entity));
+            }
+            else{
+                throw new ConstraintViolationException(null, null, "placa");
+            }
         }else{
             Optional<Veiculo> entity = repository.findById(request.getId());
             if(entity.isPresent()){
