@@ -2,11 +2,13 @@ package com.senac.locaauto.service.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.senac.locaauto.request.IdRequest;
 import com.senac.locaauto.request.VeiculoRequest;
 import com.senac.locaauto.response.VeiculoResponse;
 import com.senac.locaauto.service.VeiculoService;
-
+@Service
 public class VeiculoServiceImpl implements VeiculoService{
 
     @Override
