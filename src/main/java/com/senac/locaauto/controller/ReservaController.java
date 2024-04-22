@@ -1,6 +1,7 @@
 package com.senac.locaauto.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
@@ -33,10 +34,13 @@ public class ReservaController {
         if(request.getId() != null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        if(request.getDataFim() == null || request.getDataInicio() == null || request.getVeiculoId() == null || request.getClienteId() == null){
+            return new ResponseEntity<>(HttpStatus.PRECONDITION_FAILED);
+        }
         try{
             ReservaResponse response = service.save(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -45,10 +49,13 @@ public class ReservaController {
         if(request.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        if(request.getDataFim() == null || request.getDataInicio() == null || request.getVeiculoId() == null || request.getClienteId() == null){
+            return new ResponseEntity<>(HttpStatus.PRECONDITION_FAILED);
+        }
         try{
             ReservaResponse response = service.save(request);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -60,7 +67,7 @@ public class ReservaController {
         try{
             service.delete(request);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -72,7 +79,7 @@ public class ReservaController {
         try{
             ReservaResponse response = service.findById(request);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -81,7 +88,7 @@ public class ReservaController {
         try{
             List<ReservaResponse> response = service.listAll();
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

@@ -1,6 +1,7 @@
 package com.senac.locaauto.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
@@ -33,10 +34,13 @@ public class ClienteController {
         if(request.getId() != null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        if(request.getCpf() == null || request.getNome() == null || request.getEmail() == null || request.getEnderecoId() == null){
+            return new ResponseEntity<>(HttpStatus.PRECONDITION_FAILED);
+        }
         try{
             ClienteResponse response = service.save(request);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -45,10 +49,13 @@ public class ClienteController {
         if(request.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        if(request.getCpf() == null || request.getNome() == null || request.getEmail() == null || request.getEnderecoId() == null){
+            return new ResponseEntity<>(HttpStatus.PRECONDITION_FAILED);
+        }
         try{
             ClienteResponse response = service.save(request);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -60,7 +67,7 @@ public class ClienteController {
         try{
             service.delete(request);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -72,7 +79,7 @@ public class ClienteController {
         try{
             ClienteResponse response = service.findById(request);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -81,7 +88,7 @@ public class ClienteController {
         try{
             List<ClienteResponse> response = service.listAll();
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch(Exception e){
+        }catch(EntityNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

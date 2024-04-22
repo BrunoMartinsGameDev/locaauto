@@ -51,6 +51,11 @@ public class EnderecoController {
         if(request.getId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        if(request.getRua() == null || request.getBairro() == null
+         || request.getCidade() == null || request.getEstado() == null
+         || request.getCep() == null || request.getNumero() == null){
+            return new ResponseEntity<>(HttpStatus.PRECONDITION_FAILED);
+        }
         try{
             EnderecoResponse response = service.save(request);
             return new ResponseEntity<>(response, HttpStatus.OK);
