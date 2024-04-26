@@ -35,7 +35,6 @@ public class Endereco {
     @Column
     private String cidade;
 
-    @OneToOne
-    @JoinColumn(name = "cliente_id")
+    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cliente cliente;
 }

@@ -23,7 +23,6 @@ public class ClienteMapper {
 
         Cliente entity = new Cliente();
         entity.setNome(request.getNome());
-        entity.setEmail(request.getEmail());
         entity.setTelefone(request.getTelefone());
         entity.setCpf(request.getCpf());
         entity.setId(request.getId());
@@ -42,7 +41,6 @@ public class ClienteMapper {
     public ClienteResponse getResponseFromEntity(Cliente entity) {
         ClienteResponse response = new ClienteResponse();
         response.setNome(entity.getNome());
-        response.setEmail(entity.getEmail());
         response.setTelefone(entity.getTelefone());
         response.setCpf(entity.getCpf());
         response.setId(entity.getId());

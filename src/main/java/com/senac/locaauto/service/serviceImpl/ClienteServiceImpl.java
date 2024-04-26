@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.senac.locaauto.model.Veiculo;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,13 @@ public class ClienteServiceImpl implements ClienteService{
     public ClienteResponse save(ClienteRequest request) {
         if(request.getId() == null){
             Cliente entity = mapper.getEntityFromRequest(request);
-            return mapper.getResponseFromEntity(repository.save(entity));
+            Cliente entityConstraint = repository.findByCpf(entity.getCpf());
+            if(entityConstraint == null){
+                return mapper.getResponseFromEntity(repository.save(entity));
+            }
+            else{
+                throw new ConstraintViolationException(null, null, "placa");
+            }
         }else{
             Optional<Cliente> entity = repository.findById(request.getId());
             if(entity.isPresent()){

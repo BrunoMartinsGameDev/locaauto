@@ -28,8 +28,8 @@ public class ReservaMapper {
     public Reserva getEntityFromRequest(ReservaRequest request) {
 
         Reserva entity = new Reserva();
-        entity.setDataInicio(request.getDataInicio());
-        entity.setDataFim(request.getDataFim());
+        entity.setDatainicio(request.getDataInicio());
+        entity.setDatafim(request.getDataFim());
         entity.setId(request.getId());
         if (request.getVeiculoId() != null) {
             Optional<Veiculo> veiculo = veiculoRepository.findById(request.getVeiculoId().longValue());
@@ -53,8 +53,8 @@ public class ReservaMapper {
     public ReservaResponse getResponseFromEntity(Reserva entity) {
 
         ReservaResponse response = new ReservaResponse();
-        response.setDataInicio(entity.getDataInicio());
-        response.setDataFim(entity.getDataFim());
+        response.setDataInicio(entity.getDatainicio());
+        response.setDataFim(entity.getDatafim());
         response.setId(entity.getId());
         response.setVeiculo(veiculoMapper.getResponseFromEntity(entity.getVeiculo()));
         response.setCliente(clienteMapper.getResponseFromEntity(entity.getCliente()));

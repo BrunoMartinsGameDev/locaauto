@@ -17,11 +17,12 @@ public class Cliente {
     private Long id;
 
     private String nome;
-    private String email; //Unique
+
     private String telefone;
     private String cpf; // Unique
 
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

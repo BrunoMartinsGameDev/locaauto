@@ -16,8 +16,8 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime dataInicio;
-    private LocalDateTime dataFim;
+    private LocalDateTime datainicio;
+    private LocalDateTime datafim;
 
     @ManyToOne
     @JoinColumn(name = "veiculo_id")
